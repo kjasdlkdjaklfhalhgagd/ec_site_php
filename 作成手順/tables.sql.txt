@@ -1,0 +1,57 @@
+--1レコードが1管理者を意味するテーブル
+CREATE TABLE admin_users (
+	login_id	 varbinary(256) not null,
+	login_pass	 varbinary(256) not null,
+	PRIMARY KEY(login_id)
+);
+INERT INTO admin_users
+	(login_id, login_pass)
+	VALUES ('kuro',
+			'0b0fe253cb3da775f9da077b8e2c20e9a6e0f05fadf26723ea33a38d6c27c30307cf752109001aa2b40bd917daba85de1e819dae67617cebad9d06147bce24c4');
+			
+SELECT * FROM admin_users;
+
+
+--1レコードが1商品を意味するテーブル
+CREATE TABLE items (
+	item_number		int not null,
+	item_name	varchar(256) not null,
+	item_price	int not null,
+	item_description text not null,
+	primary key(item_number)
+);
+
+--1レコードが1人のお客様を意味をするテーブル
+CREATE TABLE users,(
+	user_no		int				not null,
+	user_name	varchar(256)	not null,
+	id			varchar(256)	not null,
+	password	varchar(256)	not null,
+	email		varchar(350)	not null,
+	birthday	date			not null,
+	zip_code	varchar(16)		not null,
+	address		varchar(512)	not null,
+	tel			varchar(36)		not null,
+	primary key(user_no)
+);
+
+--///謎
+CREATE TABLE order(
+	order_no		int			not null auto_increment,
+	order_data		datetime	not null,
+	order_user_no	int			not null,
+	total_price 	int			not null,
+	primary key(order_no)
+	);
+
+--1レコードが「1件の受注伝票の1商品」を意味するテーブル
+CREATE TABLE sale_order_detail(
+	order_no	int	not null,
+	item_no		int	not null,
+	number		int	not null,
+	price		int	not null,
+	subtotal	int	not null,
+	primary key(user_no)
+);
+
+ALTER TABLE `admin_users`  ADD `admin_id` INT(100) NOT NULL AUTO_INCREMENT ,  ADD   PRIMARY KEY  (`admin_id`) ;
